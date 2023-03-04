@@ -30,11 +30,13 @@ public class ProbabilisticRandomGenImpl implements ProbabilisticRandomGen {
 
     @Override
     public int nextFromSample() {
+        float sum = 0;
+        float rand = random.nextFloat();
         for(NumAndProbability n : numAndProbabilities) {
-            float randomFloat = random.nextFloat();
-            randomFloat -= n.getProbabilityOfSample();
-
+            sum += n.getProbabilityOfSample();
+            if(rand < sum)
+                return n.getNumber();
         }
-        return 0;
+        return numAndProbabilities.get(numAndProbabilities.size()-1).getNumber();
     }
 }
