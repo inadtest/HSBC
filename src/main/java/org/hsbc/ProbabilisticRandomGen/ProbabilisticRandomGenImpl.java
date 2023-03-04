@@ -32,7 +32,8 @@ public class ProbabilisticRandomGenImpl implements ProbabilisticRandomGen {
     public int nextFromSample() {
         for(NumAndProbability n : numAndProbabilities) {
             float randomFloat = random.nextFloat();
-            randomFloat = n.getProbabilityOfSample();
+            randomFloat -= n.getProbabilityOfSample();
+
         }
         return 0;
     }

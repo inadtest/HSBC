@@ -16,5 +16,6 @@ public interface ProbabilisticRandomGen {
         public float getProbabilityOfSample() {
             return probabilityOfSample;
         }
+        
     }
 }

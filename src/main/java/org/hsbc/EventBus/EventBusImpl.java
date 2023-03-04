@@ -15,6 +15,8 @@ public class EventBusImpl implements EventBus {
 
     @Override
     public void publishEvent(Object o) {
+        eventMap.get(o);
         eventMap.get(o).accept(o);
+
     }
 }
