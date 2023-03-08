@@ -20,6 +20,7 @@ public class ProbabilisticRandomGenTest {
         // Test that generated numbers are within expected range
         for (int i = 0; i < 1000; i++) {
             int randomNumber = prg.nextFromSample();
+            System.out.println(randomNumber);
             assertTrue(randomNumber >= 1 && randomNumber <= 3);
         }
         int num1Count = 0, num2Count = 0, num3Count = 0;

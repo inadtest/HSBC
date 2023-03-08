@@ -22,17 +22,30 @@ public class ProbabilisticRandomGenImpl implements ProbabilisticRandomGen {
         numberList = new int[numAndProbabilities.size()];
         sum = numberList.length;
 
-        // Calculate the sum of all probabilities
+        populate(numAndProbabilities);
+
+        /*// Calculate the sum of all probabilities
         float probabilitySum = 0;
         for (int i = 0; i < numAndProbabilities.size(); i++) {
             probabilitySum += numAndProbabilities.get(i).getProbabilityOfSample();
         }
+//System.out.println(probabilitySum);
         // Normalize probabilities so that they sum to 1
         for (int i = 0; i < numAndProbabilities.size(); i++) {
-            probabilityList[i] = numAndProbabilities.get(i).getProbabilityOfSample() / probabilitySum;
             numberList[i] = numAndProbabilities.get(i).getNumber();
-        }
+            probabilityList[i] = numAndProbabilities.get(i).getProbabilityOfSample() / probabilitySum;
+            System.out.println(probabilityList[i]);
 
+        }*/
+    }
+
+    private void populate(List<NumAndProbability> numAndProbabilities) {
+        float probabilitySum = (float) numAndProbabilities.stream().mapToDouble(NumAndProbability::getProbabilityOfSample).sum();
+        for (int i = 0; i < numAndProbabilities.size(); i++) {
+            numberList[i] = numAndProbabilities.get(i).getNumber();
+            // dividing this by sum, so sum of all probabilities is 1
+            probabilityList[i] = numAndProbabilities.get(i).getProbabilityOfSample() / probabilitySum;
+        }
     }
 
     @Override
