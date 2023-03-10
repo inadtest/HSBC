@@ -1,9 +1,9 @@
 package org.hsbc.ProbabilisticRandomGen;
 
 public interface ProbabilisticRandomGen {
-    public int nextFromSample();
+    int nextFromSample();
 
-    static class NumAndProbability {
+    class NumAndProbability {
         private final int number;
         private final float probabilityOfSample;
         public NumAndProbability(int number, float probabilityOfSample) {
@@ -16,6 +16,5 @@ public interface ProbabilisticRandomGen {
         public float getProbabilityOfSample() {
             return probabilityOfSample;
         }
-
     }
 }

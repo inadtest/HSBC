@@ -17,35 +17,21 @@ public class ProbabilisticRandomGenImpl implements ProbabilisticRandomGen {
     }
 
     public ProbabilisticRandomGenImpl(List<NumAndProbability> numAndProbabilities) {
+        if(numAndProbabilities == null || numAndProbabilities.size() == 0)
+            throw new IllegalArgumentException("Input list is not valid");
         random = new Random();
         probabilityList = new float[numAndProbabilities.size()];
         numberList = new int[numAndProbabilities.size()];
-        sum = numberList.length;
-
-        populate(numAndProbabilities);
-
-        /*// Calculate the sum of all probabilities
-        float probabilitySum = 0;
-        for (int i = 0; i < numAndProbabilities.size(); i++) {
-            probabilitySum += numAndProbabilities.get(i).getProbabilityOfSample();
-        }
-//System.out.println(probabilitySum);
-        // Normalize probabilities so that they sum to 1
+        sum = 0;
+       // populate(numAndProbabilities);
+        float totalProbability = 0f;
         for (int i = 0; i < numAndProbabilities.size(); i++) {
             numberList[i] = numAndProbabilities.get(i).getNumber();
-            probabilityList[i] = numAndProbabilities.get(i).getProbabilityOfSample() / probabilitySum;
-            System.out.println(probabilityList[i]);
-
-        }*/
-    }
-
-    private void populate(List<NumAndProbability> numAndProbabilities) {
-        float probabilitySum = (float) numAndProbabilities.stream().mapToDouble(NumAndProbability::getProbabilityOfSample).sum();
-        for (int i = 0; i < numAndProbabilities.size(); i++) {
-            numberList[i] = numAndProbabilities.get(i).getNumber();
-            // dividing this by sum, so sum of all probabilities is 1
-            probabilityList[i] = numAndProbabilities.get(i).getProbabilityOfSample() / probabilitySum;
+            probabilityList[i] = numAndProbabilities.get(i).getProbabilityOfSample();
+            totalProbability += probabilityList[i];
         }
+        if(totalProbability <= 0f)
+            throw new IllegalArgumentException ("Total probability cannot be less than 0");
     }
 
     @Override
