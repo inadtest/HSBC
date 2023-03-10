@@ -1,0 +1,12 @@
+Probabilistic random generator
+ProbabilisticRandomGenFactory has a static method create that take a List<NumAndProbability> and
+returns a ProbabilisticRandomGen instance
+I used factory method because it is flexible and ProbabilisticRandomGenImpl can be modified with a
+different implementation in future without affect the caller who is calling the factory method
+
+EventBus
+MultiThreadedEventBus extends EventBus interface and adds a couple of extra methods to the
+interface which is implemented by MultiThreadedEventBusImpl. Supports multiple threads
+SingleThreadedEventBusImpl implements EventBus for single threads
+
+ThrottlerImpl implement Throttler interface. Uses a timer object to schedule the execution

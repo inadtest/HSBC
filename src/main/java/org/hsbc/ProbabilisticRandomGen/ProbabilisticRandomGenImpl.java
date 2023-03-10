@@ -7,13 +7,11 @@ public class ProbabilisticRandomGenImpl implements ProbabilisticRandomGen {
     private final int[] numberList;
     private final float[] probabilityList;
     private final Random random;
-    private final int sum;
 
     public ProbabilisticRandomGenImpl(int[] numbers, float[] probabilities, Random random) {
         this.probabilityList = probabilities;
         this.numberList = numbers;
         this.random = random;
-        this.sum = 0;
     }
 
     public ProbabilisticRandomGenImpl(List<NumAndProbability> numAndProbabilities) {
@@ -22,8 +20,7 @@ public class ProbabilisticRandomGenImpl implements ProbabilisticRandomGen {
         random = new Random();
         probabilityList = new float[numAndProbabilities.size()];
         numberList = new int[numAndProbabilities.size()];
-        sum = 0;
-       // populate(numAndProbabilities);
+
         float totalProbability = 0f;
         for (int i = 0; i < numAndProbabilities.size(); i++) {
             numberList[i] = numAndProbabilities.get(i).getNumber();
