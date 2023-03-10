@@ -56,9 +56,9 @@ public class MultiThreadedEventBusImpl implements MultiThreadedEventBus {
     public void publishLatestEvents(Class<?> eventType, Object event) {
         BlockingQueue<Object> eventQueue = eventQueues.computeIfAbsent(eventType, k -> new ArrayBlockingQueue<>(1));
         eventQueue.clear(); // remove old events
-        eventQueue.offer(event); // add the new event to the queue
-        latestEventValues.put(eventType, event); // update the latest
-        // notify subscribers with the latest value of the event type
+        eventQueue.offer(event);
+        latestEventValues.put(eventType, event);
+        // notify subscribers 
         executorService.execute(() -> {
             Set<Consumer<Object>> subscribers = latestValueSubscribers.computeIfAbsent(event.getClass(), k -> new HashSet<>());
             for (Consumer<Object> subscriber : subscribers) {
